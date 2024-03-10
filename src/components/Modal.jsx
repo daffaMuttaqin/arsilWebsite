@@ -1,7 +1,7 @@
 import React from "react";
 
 function Modal() {
-  return <div>Testing...</div>;
+  return <div>Modal</div>;
 }
 
 export default Modal;

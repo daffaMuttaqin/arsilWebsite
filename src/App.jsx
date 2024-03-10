@@ -1,12 +1,12 @@
 import "./App.css";
+import Beranda from "./components/Beranda";
 import NavigationBar from "./components/NavigationBar";
-import Modal from "./components/Modal";
 
 function App() {
   return (
     <div>
       <NavigationBar />
-      <Modal />
+      <Beranda />
     </div>
   );
 }

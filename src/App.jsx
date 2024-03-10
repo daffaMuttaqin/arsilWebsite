@@ -1,12 +1,29 @@
 import "./App.css";
-import Beranda from "./components/Beranda";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Beranda from "./pages/Beranda";
 import NavigationBar from "./components/NavigationBar";
+import Tentang from "./pages/Tentang";
+import Interior from "./pages/Interior";
+import Eksterior from "./pages/Eksterior";
+import Kontak from "./pages/Kontak";
+import Notfound from "./pages/Notfound";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div>
-      <NavigationBar />
-      <Beranda />
+      <BrowserRouter>
+        <NavigationBar />
+        <Routes>
+          <Route path="/" element={<Beranda />}></Route>
+          <Route path="/interior" element={<Interior />}></Route>
+          <Route path="/eksterior" element={<Eksterior />}></Route>
+          <Route path="/tentang" element={<Tentang />}></Route>
+          <Route path="/kontak" element={<Kontak />}></Route>
+          <Route path="*" element={<Notfound />}></Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 }

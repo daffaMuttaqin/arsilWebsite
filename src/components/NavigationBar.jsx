@@ -1,5 +1,6 @@
 import React from "react";
 import ArsilLogo from "../assets/images/logo/arsil.png";
+import { Link } from "react-router-dom";
 
 function NavigationBar() {
   return (
@@ -28,54 +29,54 @@ function NavigationBar() {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a>Beranda</a>
+                <Link to="/">Beranda</Link>
               </li>
               <li>
                 <a>Proyek</a>
                 <ul className="p-2">
                   <li>
-                    <a>Interior</a>
+                    <Link to="interior">Interior</Link>
                   </li>
                   <li>
-                    <a>Eksterior</a>
+                    <Link to="eksterior">Eksterior</Link>
                   </li>
                 </ul>
               </li>
               <li>
-                <a>Tentang</a>
+                <Link to="tentang">Tentang</Link>
               </li>
               <li>
-                <a>Kontak Kami</a>
+                <Link to="kontak">Kontak Kami</Link>
               </li>
             </ul>
           </div>
           <a href="/">
-            <img src={ArsilLogo} className="h-16 ml-4" alt="" />
+            <img src={ArsilLogo} className="h-8 ml-4" alt="" />
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a>Beranda</a>
+              <Link to="/">Beranda</Link>
             </li>
             <li>
               <details>
                 <summary>Proyek</summary>
                 <ul className="p-2">
                   <li>
-                    <a>Interior</a>
+                    <Link to="/interior">Interior</Link>
                   </li>
                   <li>
-                    <a>Eksterior</a>
+                    <Link to="eksterior">Eksterior</Link>
                   </li>
                 </ul>
               </details>
             </li>
             <li>
-              <a>Tentang</a>
+              <Link to="tentang">Tentang</Link>
             </li>
             <li>
-              <a>Kontak Kami</a>
+              <Link to="kontak">Kontak Kami</Link>
             </li>
           </ul>
         </div>

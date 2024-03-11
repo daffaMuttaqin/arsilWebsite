@@ -4,7 +4,7 @@ import ArsilLogo from "../assets/images/logo/arsil.png";
 const Footer = () => {
   return (
     <div>
-      <footer className="footer p-10 bg-neutral text-neutral-content">
+      <footer className="footer p-10 bg-gray-200 tracking-wide">
         <aside>
           <img src={ArsilLogo} className="h-16" />
           <p>

@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Beranda from "./pages/Beranda";
 import NavigationBar from "./components/NavigationBar";
@@ -8,12 +7,14 @@ import Eksterior from "./pages/Eksterior";
 import Kontak from "./pages/Kontak";
 import Notfound from "./pages/Notfound";
 import Footer from "./components/Footer";
+import WhatsappButton from "./components/WhatsappButton";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <NavigationBar />
+        <WhatsappButton />
         <Routes>
           <Route path="/" element={<Beranda />}></Route>
           <Route path="/interior" element={<Interior />}></Route>

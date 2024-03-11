@@ -1,12 +1,13 @@
 import React from "react";
 import ArsilLogo from "../assets/images/logo/arsil.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function NavigationBar() {
+  const navigate = useNavigate();
   return (
-    <div className="px-1 ">
-      <div className="navbar shadow-xl bg-gray-200 rounded-xl">
-        <div className="navbar-start">
+    <div className="">
+      <div className="navbar shadow-xl bg-gray-200 fixed z-50">
+        <div className="navbar-start relative">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -26,13 +27,13 @@ function NavigationBar() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm tracking-wide font-semibold dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
                 <Link to="/">Beranda</Link>
               </li>
               <li>
-                <a>Proyek</a>
+                <a>Portofolio</a>
                 <ul className="p-2">
                   <li>
                     <Link to="interior">Interior</Link>
@@ -55,13 +56,13 @@ function NavigationBar() {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal tracking-widest font-semibold px-1">
             <li>
               <Link to="/">Beranda</Link>
             </li>
             <li>
               <details>
-                <summary>Proyek</summary>
+                <summary>Portofolio</summary>
                 <ul className="p-2">
                   <li>
                     <Link to="/interior">Interior</Link>

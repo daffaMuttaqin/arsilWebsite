@@ -1,7 +1,11 @@
 import React from "react";
 
 const Tentang = () => {
-  return <div>Tentang Kami</div>;
+  return (
+    <div className="w-full h-full">
+      <div>Tentang Kami</div>
+    </div>
+  );
 };
 
 export default Tentang;

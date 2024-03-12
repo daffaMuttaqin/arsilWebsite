@@ -1,9 +1,9 @@
 import React from "react";
 import ArsilLogo from "../assets/images/logo/arsil.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import ScrollProgress from "./ScrollProgress";
 
 function NavigationBar() {
-  const navigate = useNavigate();
   return (
     <div className="">
       <div className="navbar shadow-xl bg-gray-200 fixed z-50">
@@ -83,6 +83,8 @@ function NavigationBar() {
         </div>
         <div className="navbar-end"></div>
       </div>
+      <ScrollProgress />
+      <div className="pt-16"></div>
     </div>
   );
 }

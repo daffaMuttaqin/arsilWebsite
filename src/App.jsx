@@ -1,32 +1,34 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Beranda from "./pages/Beranda";
-import NavigationBar from "./components/NavigationBar";
-import Tentang from "./pages/Tentang";
-import Interior from "./pages/Interior";
-import Eksterior from "./pages/Eksterior";
-import Kontak from "./pages/Kontak";
-import Notfound from "./pages/Notfound";
+import React from "react";
+import Navbar from "./components/Navbar";
+import LandingCarousel from "./components/LandingCarousel";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Services from "./components/Services";
+import Portfolio from "./components/Portfolio";
+import Process from "./components/Process";
+import Clients from "./components/Clients";
+import Testimonials from "./components/Testimonials";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import WhatsappButton from "./components/WhatsappButton";
 
-function App() {
+export default function App() {
   return (
-    <div>
-      <BrowserRouter>
-        <NavigationBar />
-        <WhatsappButton />
-        <Routes>
-          <Route path="/" element={<Beranda />}></Route>
-          <Route path="/interior" element={<Interior />}></Route>
-          <Route path="/eksterior" element={<Eksterior />}></Route>
-          <Route path="/tentang" element={<Tentang />}></Route>
-          <Route path="/kontak" element={<Kontak />}></Route>
-          <Route path="*" element={<Notfound />}></Route>
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+    <div className="min-h-screen bg-white text-neutral-900">
+      <Navbar />
+      <LandingCarousel />
+      <Hero />
+      <About />
+      <Services />
+      <Portfolio />
+      <Process />
+      {/* <Clients /> */}
+      <Testimonials />
+      <Contact />
+      <Footer />
+
+      {/* Floating WhatsApp Button */}
+      <WhatsappButton />
     </div>
   );
 }
-
-export default App;

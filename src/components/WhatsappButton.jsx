@@ -3,12 +3,16 @@ import whatsApp from "../assets/images/logo/whatsApp.png";
 
 const WhatsappButton = () => {
   return (
-    <div className="fixed bottom-0 right-0 z-50 p-6 ">
-      <a href="#">
+    <div className="fixed bottom-6 right-6 z-50">
+      <a
+        href="https://wa.me/6281234567890"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img
           src={whatsApp}
-          alt=""
-          className="w-h-20 h-20 drop-shadow-md hover:scale-110 duration-300"
+          alt="WhatsApp"
+          className="w-16 h-16 drop-shadow-md hover:scale-110 transition-transform duration-300"
         />
       </a>
     </div>

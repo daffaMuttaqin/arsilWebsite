@@ -21,7 +21,7 @@ export default function Contact() {
         {/* Info */}
         <div className="space-y-4">
           <p className="text-neutral-700">
-            Ceritakan kebutuhan Anda—tim kami akan merespons dalam 1–2 hari
+            Ceritakan kebutuhan Anda. Tim kami akan merespons dalam 1–2 hari
             kerja. Kami dapat membantu menyusun brief, estimasi anggaran, dan
             timeline.
           </p>
@@ -36,8 +36,8 @@ export default function Contact() {
               <Phone className="w-4 h-4" /> +62 812-3456-7890
             </a>
             <div className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 mt-0.5" /> Jl. Arsitek No. 10, Jakarta
-              Selatan
+              <MapPin className="w-4 h-4 mt-0.5" /> Jl. Abadi No. 48B, Medan,
+              Sumatera Utara
             </div>
             <div className="flex items-center gap-4 pt-2">
               <a
@@ -56,64 +56,19 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Form */}
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            alert("Terima kasih! Pesan Anda sudah terkirim.");
-          }}
-          className="rounded-2xl border p-5 space-y-4"
-        >
-          <div>
-            <label className="text-sm">Nama</label>
-            <input
-              required
-              className="mt-1 w-full rounded-xl border px-3 py-2"
-              placeholder="Nama lengkap"
-            />
-          </div>
-          <div className="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label className="text-sm">Email</label>
-              <input
-                type="email"
-                required
-                className="mt-1 w-full rounded-xl border px-3 py-2"
-                placeholder="nama@email.com"
-              />
-            </div>
-            <div>
-              <label className="text-sm">Telepon/WA</label>
-              <input
-                className="mt-1 w-full rounded-xl border px-3 py-2"
-                placeholder="08xxxxxxxxxx"
-              />
-            </div>
-          </div>
-          <div>
-            <label className="text-sm">Jenis Proyek</label>
-            <select className="mt-1 w-full rounded-xl border px-3 py-2">
-              <option>Residensial</option>
-              <option>Komersial</option>
-              <option>Interior</option>
-              <option>Renovasi</option>
-              <option>Lainnya</option>
-            </select>
-          </div>
-          <div>
-            <label className="text-sm">Pesan</label>
-            <textarea
-              className="mt-1 w-full rounded-xl border px-3 py-2 h-28"
-              placeholder="Ceritakan kebutuhan, lokasi, dan perkiraan anggaran"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-black text-white px-4 py-3"
-          >
-            Kirim Pesan <ArrowRight className="w-4 h-4" />
-          </button>
-        </form>
+        {/* Maps */}
+        <div className="w-full h-96">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.3579693747603!2d107.6126267749966!3d-6.968722293043654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e81a3c77a3fb%3A0x58c4f9b33a68f2f9!2sArsil%20Group!5e0!3m2!1sid!2sid!4v1692802823432!5m2!1sid!2sid"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Arsil Group Location"
+          ></iframe>
+        </div>
       </motion.div>
     </Section>
   );

@@ -60,7 +60,7 @@ export default function Portfolio() {
                 </div>
               </div>
               <h3 className="font-medium">{p.title}</h3>
-              <p className="text-sm text-neutral-600 mt-1">{p.blurb}</p>
+              <p className="text-sm text-neutral-600 mt-1">{p.description}</p>
             </div>
           </article>
         ))}

@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Container from "./ui/Container";
-import Pill from "./ui/Pill";
 import Stat from "./ui/Stat";
-import Badge from "./ui/Badge";
 import { fadeInUp } from "../utils/animations";
 
 export default function Hero() {
@@ -22,7 +20,6 @@ export default function Hero() {
       <Container>
         <div className="h-[70vh] flex items-end pb-10">
           <motion.div {...fadeInUp} className="max-w-3xl">
-            <Pill>Arsitektur modern & fungsional</Pill>
             <h1 className="mt-4 text-3xl sm:text-5xl md:text-6xl font-semibold leading-tight">
               Mewujudkan ruang yang indah, efisien, dan bernilai.
             </h1>
@@ -54,8 +51,11 @@ export default function Hero() {
               <Stat value="120+" label="Proyek Terselesaikan" />
               <Stat value="30%" label="Rata-rata Hemat Energi*" />
               <div className="col-span-3 sm:col-span-3 text-xs text-neutral-500">
-                <Badge>*Estimasi</Badge> berdasarkan penggunaan bukaan alami,
-                material insulatif, dan orientasi bangunan.
+                <span className="text-[10px] uppercase tracking-widest text-neutral-500">
+                  *Estimasi
+                </span>
+                berdasarkan penggunaan bukaan alami, material insulatif, dan
+                orientasi bangunan.
               </div>
             </div>
           </motion.div>

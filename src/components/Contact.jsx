@@ -27,14 +27,14 @@ export default function Contact() {
           </p>
           <div className="space-y-3 text-sm">
             <a
-              href="mailto:hello@arsilgroup.com"
+              href="mailto:info@arsilgroup.com"
               className="flex items-center gap-2"
             >
-              <Mail className="w-4 h-4" /> hello@arsilgroup.com
+              <Mail className="w-4 h-4" /> info@arsilgroup.com
             </a>
-            <a href="tel:+6281234567890" className="flex items-center gap-2">
-              <Phone className="w-4 h-4" /> +62 812-3456-7890
-            </a>
+            <div className="flex items-center gap-2">
+              <Phone className="w-4 h-4" /> +62 812-2521-1200
+            </div>
             <div className="flex items-start gap-2">
               <MapPin className="w-4 h-4 mt-0.5" /> Jl. Abadi No. 48B, Medan,
               Sumatera Utara
@@ -59,7 +59,8 @@ export default function Contact() {
         {/* Maps */}
         <div className="w-full h-96">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.3579693747603!2d107.6126267749966!3d-6.968722293043654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e81a3c77a3fb%3A0x58c4f9b33a68f2f9!2sArsil%20Group!5e0!3m2!1sid!2sid!4v1692802823432!5m2!1sid!2sid"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.046192007091!2d98.6359245!3d3.5818154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30312f8160721787%3A0xa853d20cde0a178a!2sARSIL%20GROUP!5e0!3m2!1sid!2sid!4v1724174000000!5m2!1sid!2sid"
+            className="rounded-md"
             width="100%"
             height="100%"
             style={{ border: 0 }}

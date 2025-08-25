@@ -2,7 +2,6 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import Section from "./ui/Section";
-import Badge from "./ui/Badge";
 import { fadeInUp } from "../utils/animations";
 import { PROJECTS } from "../data/projects";
 
@@ -20,7 +19,7 @@ export default function Portfolio() {
   }, [query]);
 
   return (
-    <Section id="portfolio" title="Portofolio" subtitle="Hasil karya terpilih">
+    <Section id="portfolio" title="Portofolio" subtitle="Hasil karya kami">
       <motion.div
         {...fadeInUp}
         className="flex items-center justify-between gap-4 mb-6"
@@ -54,7 +53,9 @@ export default function Portfolio() {
             </div>
             <div className="p-4">
               <div className="flex items-center gap-2 mb-2">
-                <Badge>{p.category}</Badge>
+                <span className="text-[10px] uppercase tracking-widest text-neutral-500">
+                  {p.category}
+                </span>
                 <div className="inline-flex items-center gap-1 text-xs text-neutral-500">
                   <MapPin className="w-3 h-3" /> {p.location}
                 </div>

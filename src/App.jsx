@@ -14,6 +14,9 @@ import WhatsappButton from "./components/WhatsappButton";
 import Admin from "./components/Admin";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import NoSidebarLayout from "./layouts/NoSidebarLayout";
+import SidebarLayout from "./layouts/SidebarLayout";
+import ListTestimonials from "./components/ListTestimonials";
 
 function LandingPage() {
   return (
@@ -39,14 +42,53 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Landing page */}
-        <Route path="/" element={<LandingPage />} />
+        {/* Tanpa Sidebar */}
+        <Route
+          path="/login"
+          element={
+            <NoSidebarLayout>
+              <Login />
+            </NoSidebarLayout>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <NoSidebarLayout>
+              <Register />
+            </NoSidebarLayout>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <NoSidebarLayout>
+              <LandingPage />
+            </NoSidebarLayout>
+          }
+        />
 
-        {/* Halaman login */}
-        <Route path="/login" element={<Login />} />
-
-        {/* Halaman admin */}
-        <Route path="/admin" element={<Admin />} />
+        {/* Routes DENGAN Sidebar */}
+        <Route element={<SidebarLayout />}>
+          {/* Projects */}
+          <Route
+            path="/admin"
+            element={
+              // <ProtectedRoutes>
+              <Admin />
+              // </ProtectedRoutes>
+            }
+          />
+          {/* Testimonials */}
+          <Route
+            path="/admin/testimonial"
+            element={
+              // <ProtectedRoutes>
+              <ListTestimonials />
+              // </ProtectedRoutes>
+            }
+          />
+        </Route>
       </Routes>
     </Router>
   );

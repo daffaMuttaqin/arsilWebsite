@@ -17,6 +17,7 @@ import Register from "./components/Register";
 import NoSidebarLayout from "./layouts/NoSidebarLayout";
 import SidebarLayout from "./layouts/SidebarLayout";
 import ListTestimonials from "./components/ListTestimonials";
+import ProtectedRoutes from "./components/ProtectedRoute";
 
 function LandingPage() {
   return (
@@ -74,9 +75,9 @@ export default function App() {
           <Route
             path="/admin"
             element={
-              // <ProtectedRoutes>
-              <Admin />
-              // </ProtectedRoutes>
+              <ProtectedRoutes>
+                <Admin />
+              </ProtectedRoutes>
             }
           />
           {/* Testimonials */}

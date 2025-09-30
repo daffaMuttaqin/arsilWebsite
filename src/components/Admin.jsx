@@ -5,7 +5,7 @@ import axios from "axios";
 
 function Admin() {
   const [deleteId, setDeleteId] = useState(null);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
@@ -54,114 +54,96 @@ function Admin() {
                 <th>Deskripsi</th>
                 <th>Cover</th>
                 <th className="text-center">Foto</th>
-                <th>sadasd</th>
+                <th className="text-center">Aksi</th>
               </tr>
             </thead>
             <tbody>
               {/* row 1 */}
-              <tr>
-                <th>1</th>
-                <td>Villa Berastagi</td>
-                <td>Medan, Sumatera Utara</td>
-                <td>Hunian/Villa</td>
-                <td>
-                  Villa Berastagi pegunungan, material lokal, dan bukaan lebar
-                  untuk menyatu dengan lanskap.
-                </td>
-                {/* COVER */}
-                <td>
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </td>
-                {/* FOTO */}
-                <td className="grid lg:grid-cols-3 grid-cols-1">
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img
-                      src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                      alt="Avatar Tailwind CSS Component"
-                    />
-                  </div>
-                </td>
+              {data.map((item, index) => (
+                <tr key={item.id}>
+                  <th>{index + 1}</th>
+                  <td>{item.title}</td>
+                  <td>{item.location}</td>
+                  <td>{item.category}</td>
+                  <td>{item.description}</td>
+                  {/* COVER */}
+                  <td>
+                    <div className="mask mask-squircle h-12 w-12">
+                      <img
+                        className="w-12 h-12"
+                        src={item.cover}
+                        alt="Cover Projects"
+                      />
+                    </div>
+                  </td>
+                  {/* FOTO */}
+                  <td className="grid lg:grid-cols-3 grid-cols-1 gap-2">
+                    {item.images &&
+                      item.images.map((img, idx) => (
+                        <div key={idx} className="mask mask-squircle h-12 w-12">
+                          <img
+                            className="w-12 h-12"
+                            src={img}
+                            alt={`Foto ${idx + 1} - ${item.title}`}
+                          />
+                        </div>
+                      ))}
+                  </td>
 
-                {/* Button Update dan Delete */}
-                <td>
-                  <button
-                    // onClick={() => handleEdit(item)}
-                    className="btn btn-square btn-success"
-                  >
-                    <svg
-                      className="size-[22px]"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                    onClick={() => {
-                      // setDeleteId(item.id); // simpan id yang akan dihapus
-                      document.getElementById("modal_delete").showModal();
-                    }}
-                    className="btn btn-square btn-error lg:ml-2 ml-1"
-                  >
-                    <svg
-                      className="size-[20px]"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
-                      />
-                    </svg>
-                  </button>
-                </td>
-              </tr>
+                  {/* Button Update dan Delete */}
+                  <td>
+                    <div className="flex justify-center">
+                      <button
+                        // onClick={() => handleEdit(item)}
+                        className="btn btn-square btn-success"
+                      >
+                        <svg
+                          className="size-[22px]"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28"
+                          />
+                        </svg>
+                      </button>
+                      <button
+                        onClick={() => {
+                          // setDeleteId(item.id); // simpan id yang akan dihapus
+                          document.getElementById("modal_delete").showModal();
+                        }}
+                        className="btn btn-square btn-error lg:ml-2 ml-1"
+                      >
+                        <svg
+                          className="size-[20px]"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

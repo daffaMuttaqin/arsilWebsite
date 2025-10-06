@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import React from "react";
 import API from "../services/authService";
 import axios from "axios";
 
@@ -13,6 +12,7 @@ function Admin() {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [cover, setCover] = useState(null);
+  const [editingProject, setEditingProject] = useState(null);
 
   // state untuk banyak foto
   const [images, setImages] = useState([[]]);
@@ -59,6 +59,16 @@ function Admin() {
     });
   };
 
+  const resetForm = () => {
+    setTitle("");
+    setLocation("");
+    setCategory("");
+    setDescription("");
+    setCover(null);
+    setImages([]);
+    setEditingProject(null);
+  };
+
   // Handle Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,29 +90,65 @@ function Admin() {
     });
 
     try {
-      const res = await API.post("/projects", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      let res;
+      if (editingProject) {
+        // EDIT MODE
+        console.log("Editing project:", editingProject);
+        console.log("FormData entries:");
+        for (let pair of formData.entries()) {
+          console.log(pair[0], pair[1]);
+        }
+        res = await API.put(`/projects/${editingProject.id}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
 
-      // Tutup modal
+        // update data di tabel
+        setData((prev) =>
+          prev.map((item) => (item.id === editingProject.id ? res.data : item))
+        );
+      } else {
+        // ADD MODE
+        res = await API.post("/projects", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+
+        setData((prev) => [...prev, res.data]);
+      }
+
+      // Tutup modal & reset form
       document.getElementById("modal_tambah_projek").close();
-
-      // Reset form
-      setTitle("");
-      setLocation("");
-      setCategory("");
-      setDescription("");
-      setCover(null);
-      setImages([]);
-
-      // Update tabel
-      setData((prev) => [...prev, res.data]);
-
-      console.log("Proyek berhasil ditambahkan:", res.data);
+      resetForm();
     } catch (error) {
       console.error("Error upload:", error);
       alert("Gagal upload proyek");
     }
+  };
+
+  // EDIT DATA
+  const handleEdit = (project) => {
+    setEditingProject(project);
+
+    // isi form dengan data lama
+    setTitle(project.title);
+    setLocation(project.location);
+    setCategory(project.category);
+    setDescription(project.description);
+
+    // cover
+    if (project.coverUrl) {
+      setCover({ file: null, preview: project.coverUrl });
+    } else {
+      setCover(null);
+    }
+
+    // images
+    if (project.images && project.images.length > 0) {
+      setImages(project.images.map((url) => ({ file: null, preview: url })));
+    } else {
+      setImages([]);
+    }
+
+    document.getElementById("modal_tambah_projek").showModal();
   };
 
   useEffect(() => {
@@ -207,7 +253,7 @@ function Admin() {
                   <td>
                     <div className="flex justify-center">
                       <button
-                        // onClick={() => handleEdit(item)}
+                        onClick={() => handleEdit(item)}
                         className="btn btn-square btn-success"
                       >
                         <svg
@@ -527,7 +573,7 @@ function Admin() {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                Tambah proyek baru
+                {editingProject ? "Simpan Perubahan" : "Tambah proyek baru"}
               </button>
             </form>
           </fieldset>

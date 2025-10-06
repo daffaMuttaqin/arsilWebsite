@@ -1,8 +1,8 @@
 import React from "react";
-import slide1 from "../assets/images/landingPage/bedroom1.jpg";
-import slide2 from "../assets/images/landingPage/red_bedroom.jpg";
-import slide3 from "../assets/images/landingPage/bathroom.jpg";
-import slide4 from "../assets/images/landingPage/library.jpg";
+import slide1 from "../assets/images/landingPage/1.jpg";
+import slide2 from "../assets/images/landingPage/7.jpg";
+import slide3 from "../assets/images/landingPage/4.jpg";
+import slide4 from "../assets/images/landingPage/6.jpg";
 import {
   Navigation,
   Pagination,

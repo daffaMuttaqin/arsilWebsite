@@ -1,25 +1,42 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
-import { MapPin, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import Section from "./ui/Section";
 import { fadeInUp } from "../utils/animations";
-import { PROJECTS } from "../data/projects";
+import axios from "axios";
 
 export default function Portfolio() {
   const [query, setQuery] = useState("");
+  const [projects, setProjects] = useState([]); // data dari API
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // 🔹 Ambil data dari API
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/projects`
+        );
+        setProjects(res.data); // simpan ke state
+      } catch (err) {
+        console.error("Gagal fetch projects:", err);
+      }
+    };
+    fetchProjects();
+  }, []);
+
+  // filter projects berdasarkan query
   const filteredProjects = useMemo(() => {
-    if (!query) return PROJECTS;
+    if (!query) return projects;
     const q = query.toLowerCase();
-    return PROJECTS.filter(
+    return projects.filter(
       (p) =>
         p.title.toLowerCase().includes(q) ||
         p.category.toLowerCase().includes(q) ||
         p.location.toLowerCase().includes(q)
     );
-  }, [query]);
+  }, [query, projects]);
 
   // fungsi untuk ganti slide
   const nextImage = () => {

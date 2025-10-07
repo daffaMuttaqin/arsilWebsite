@@ -84,9 +84,9 @@ export default function App() {
           <Route
             path="/admin/testimonial"
             element={
-              // <ProtectedRoutes>
-              <ListTestimonials />
-              // </ProtectedRoutes>
+              <ProtectedRoutes>
+                <ListTestimonials />
+              </ProtectedRoutes>
             }
           />
         </Route>

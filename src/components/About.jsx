@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Mail, Image as ImageIcon, CheckCircle2 } from "lucide-react";
 import Section from "./ui/Section";
 import { fadeInUp } from "../utils/animations";
+import photo from "../assets/images/landingPage/5.jpg";
 
 export default function About() {
   return (
@@ -11,11 +12,7 @@ export default function About() {
         className="grid md:grid-cols-2 gap-8 items-center"
       >
         <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100">
-          <img
-            src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1600&auto=format&fit=crop"
-            alt="About"
-            className="w-full h-full object-cover"
-          />
+          <img src={photo} alt="About" className="w-full h-full object-cover" />
         </div>
         <div className="space-y-4">
           <p>

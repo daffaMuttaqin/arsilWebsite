@@ -7,18 +7,19 @@ import axios from "axios";
 
 export default function Portfolio() {
   const [query, setQuery] = useState("");
-  const [projects, setProjects] = useState([]); // data dari API
+  const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [slideshowImages, setSlideshowImages] = useState([]); // 🔹 simpan cover + images
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // 🔹 Ambil data dari API
+  // 🔹 Fetch API
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const res = await axios.get(
           `${import.meta.env.VITE_API_URL}/api/projects`
         );
-        setProjects(res.data); // simpan ke state
+        setProjects(res.data);
       } catch (err) {
         console.error("Gagal fetch projects:", err);
       }
@@ -26,7 +27,7 @@ export default function Portfolio() {
     fetchProjects();
   }, []);
 
-  // filter projects berdasarkan query
+  // 🔍 Filter
   const filteredProjects = useMemo(() => {
     if (!query) return projects;
     const q = query.toLowerCase();
@@ -38,18 +39,16 @@ export default function Portfolio() {
     );
   }, [query, projects]);
 
-  // fungsi untuk ganti slide
+  // 🔹 Next / Prev pakai slideshowImages
   const nextImage = () => {
-    if (!selectedProject) return;
-    setCurrentImageIndex((prev) => (prev + 1) % selectedProject.images.length);
+    if (!slideshowImages.length) return;
+    setCurrentImageIndex((prev) => (prev + 1) % slideshowImages.length);
   };
 
   const prevImage = () => {
-    if (!selectedProject) return;
+    if (!slideshowImages.length) return;
     setCurrentImageIndex(
-      (prev) =>
-        (prev - 1 + selectedProject.images.length) %
-        selectedProject.images.length
+      (prev) => (prev - 1 + slideshowImages.length) % slideshowImages.length
     );
   };
 
@@ -78,10 +77,11 @@ export default function Portfolio() {
       >
         {filteredProjects.map((p) => (
           <article
-            key={p.title}
+            key={p.id}
             className="group rounded-2xl overflow-hidden border bg-white cursor-pointer"
             onClick={() => {
               setSelectedProject(p);
+              setSlideshowImages([p.cover, ...(p.images || [])]); // 🔹 cover jadi urutan pertama
               setCurrentImageIndex(0);
             }}
           >
@@ -118,38 +118,36 @@ export default function Portfolio() {
       {selectedProject && (
         <div
           className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-          onClick={() => setSelectedProject(null)} // klik luar modal close
+          onClick={() => setSelectedProject(null)}
         >
           <div
             className="bg-white rounded-2xl max-w-3xl w-full relative p-4"
-            onClick={(e) => e.stopPropagation()} // cegah klik dalam modal ikut nutup
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Tombol close */}
-            <button
-              className="absolute top-3 right-3 text-gray-700 hover:text-black"
-              onClick={() => setSelectedProject(null)}
-            ></button>
-
             {/* Slideshow */}
             <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
               <img
-                src={selectedProject.images[currentImageIndex]}
+                src={slideshowImages[currentImageIndex]}
                 alt={`${selectedProject.title} - ${currentImageIndex + 1}`}
                 className="w-full h-full object-cover"
               />
               {/* tombol prev/next */}
-              <button
-                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full"
-                onClick={prevImage}
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full"
-                onClick={nextImage}
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
+              {slideshowImages.length > 1 && (
+                <>
+                  <button
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full"
+                    onClick={prevImage}
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full"
+                    onClick={nextImage}
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </>
+              )}
             </div>
 
             {/* Info Project */}

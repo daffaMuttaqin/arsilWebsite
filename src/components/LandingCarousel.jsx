@@ -43,9 +43,9 @@ const LandingCarousel = () => {
         <SwiperSlide>
           <img className="mx-auto brightness-50" src={slide4} alt="" />
         </SwiperSlide>
-        {/* <div className="absolute inset-0 flex items-center justify-center z-10 text-4xl sm:text-6xl font-extrabold text-white">
-          Saya anak tapep
-        </div> */}
+        <div className="absolute inset-0 flex items-center justify-center z-10 text-4xl sm:text-6xl font-extrabold text-white">
+          "Moto Perusahaan"
+        </div>
       </Swiper>
     </div>
   );

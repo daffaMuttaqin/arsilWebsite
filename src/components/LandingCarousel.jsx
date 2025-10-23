@@ -16,7 +16,7 @@ import "swiper/css/bundle";
 
 const LandingCarousel = () => {
   return (
-    <div className="w-full h-full relative">
+    <section className="w-full h-full relative">
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         spaceBetween={50}
@@ -47,7 +47,7 @@ const LandingCarousel = () => {
           "Moto Perusahaan"
         </div>
       </Swiper>
-    </div>
+    </section>
   );
 };
 

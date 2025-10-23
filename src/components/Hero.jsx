@@ -6,21 +6,11 @@ import { fadeInUp } from "../utils/animations";
 
 export default function Hero() {
   return (
-    <section id="home" className="relative">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10">
-        <img
-          src="https://images.unsplash.com/photo-1515263487990-61b07816b324?q=80&w=2400&auto=format&fit=crop"
-          alt="Hero"
-          className="w-full h-[70vh] object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-transparent" />
-      </div>
-
+    <section id="home" className="py-16 sm:py-20 sm:mt-16 mt-0 relative">
       <Container>
         <div className="h-[70vh] flex items-end pb-10">
           <motion.div {...fadeInUp} className="max-w-3xl">
-            <h1 className="mt-4 text-3xl sm:text-5xl md:text-6xl font-semibold leading-tight">
+            <h1 className="mt-4 text-3xl sm:text-4xl md:text-6xl font-semibold leading-tight">
               Mewujudkan ruang yang indah, efisien, dan bernilai.
             </h1>
             <p className="mt-4 text-neutral-600 max-w-2xl">
